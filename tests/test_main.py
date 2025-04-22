@@ -7,4 +7,10 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello, world!"}
+    assert response.json() == {"message": "Hello CI/CD"}
+
+
+def test_healthcheck():
+    response = client.get("/healthcheck")
+    assert response.status_code == 200
+    assert response.json() == {"status": "OK"}
